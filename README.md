@@ -65,5 +65,4 @@ npm run build
 ```
 
 ---
- switch languages between English, Tamil, and Hindi.
 

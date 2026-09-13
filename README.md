@@ -49,7 +49,7 @@ An enterprise-grade commercial healthcare SaaS application powering instant OCR 
 
 ## 🚀 Getting Started
 
-### 1. Run the Frontend (React + TypeScript + Vite)
+### Run the Frontend (React + TypeScript + Vite)
 ```bash
 # 1. Install dependencies (if not already installed)
 npm install
@@ -65,29 +65,5 @@ npm run build
 ```
 
 ---
-
-### 2. Run the Python FastAPI Backend (Optional)
-The frontend contains built-in realistic mock services and offline fallbacks, but you can also run the FastAPI service:
-```bash
-# 1. Install Python dependencies
-pip install -r backend/requirements.txt
-
-# 2. Launch FastAPI server
-python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
-```
-API Documentation will be live at: [http://localhost:8000/docs](http://localhost:8000/docs).
-
----
-
-## 🏆 Key Hackathon Demo Flow
-1. **User Scans Medicine** ➔ Click `Scan Medicine Now (Dolo 650)` on Dashboard.
-2. **AI Vision Extraction** ➔ Observe the 8-cell morphological matrix, 98% confidence circle, and Master DB keypoint matching.
-3. **Add to Smart Inventory** ➔ Click `Add to Smart Inventory`.
-4. **Prescription Verification** ➔ Navigate to `Rx-to-Pill Safety Engine`.
-5. **Simulate Mismatch** ➔ Click `Test Strength Mismatch (650mg vs 500mg)`.
-6. **Discrepancy Matrix** ➔ Observe the prominent Red Alert and Side-by-Side Comparison Table.
-7. **Duplicate Ingredient Check** ➔ Click `Test Dolo 650 + Cold Relief` to visualize Paracetamol duplication.
-8. **"Can I Take This Now?"** ➔ Click the button to get real-time timing & food clearance.
-9. **Generate Clinical Report** ➔ View report and transmit to Dr. Sharma.
-10. **Audio Chime & Multilingual** ➔ Click `🔔 ⚠️ Alarm Beep Alert: CITIZEN` to hear the dual-frequency synthesizer and switch languages between English, Tamil, and Hindi.
+ switch languages between English, Tamil, and Hindi.
 

@@ -49,7 +49,7 @@ An enterprise-grade commercial healthcare SaaS application powering instant OCR 
 
 ## 🚀 Getting Started
 
-### Run the Frontend (React + TypeScript + Vite)
+### 1. Run the Frontend (React + TypeScript + Vite)
 ```bash
 # 1. Install dependencies (if not already installed)
 npm install
@@ -65,4 +65,63 @@ npm run build
 ```
 
 ---
+
+### 2. Run the Python FastAPI Backend (Optional)
+The frontend contains built-in realistic mock services and offline fallbacks, but you can also run the FastAPI service:
+```bash
+# 1. Install Python dependencies
+pip install -r backend/requirements.txt
+
+# 2. Launch FastAPI server
+python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
+```
+API Documentation will be live at: [http://localhost:8000/docs](http://localhost:8000/docs).
+
+---
+
+## ▲ Deploying the Frontend to Vercel
+
+The frontend is a static Vite SPA, so it deploys to Vercel with zero extra configuration.
+
+### One-time setup
+1. Push this repository to GitHub with its **full folder structure** (the `src/` folder must keep its
+   sub-directories: `src/components/...`, `src/contexts`, `src/i18n`, `src/lib`, `src/types`, `src/utils`).
+   > ⚠️ Never upload files through GitHub's drag-and-drop web UI — it **flattens** directories and drops files,
+   > which makes the Vercel build fail with errors such as
+   > `Could not resolve "./components/common/AIAssistantChat" from "App.tsx"`.
+   > Use `git push` (or GitHub Desktop / the VS Code Git panel) instead.
+2. In Vercel: **Add New → Project → Import** the GitHub repository.
+3. Keep the defaults (they are also pinned in `vercel.json`):
+   - Framework Preset: **Vite**
+   - Install Command: `npm install`
+   - Build Command: `npm run build`
+   - Output Directory: `dist`
+4. Click **Deploy**. No environment variables are required for the frontend — all clinical data is served by
+   built-in mock services, so the Python backend is optional.
+
+### Local production-build check (same command Vercel runs)
+```bash
+npm install
+npm run build      # runs: tsc -b && vite build
+npm run preview    # serves the generated dist/ folder locally
+```
+
+### Files that must NOT be committed
+`node_modules/`, `dist/`, `*.tsbuildinfo`, the TypeScript-emitted `vite.config.js` / `vite.config.d.ts`,
+`.env*` secrets and Python `__pycache__/` are all ignored by `.gitignore`. Committing a stale
+`*.tsbuildinfo` can silently skip type checking on CI, so keep it ignored.
+
+---
+
+## 🏆 Key Hackathon Demo Flow
+1. **User Scans Medicine** ➔ Click `Scan Medicine Now (Dolo 650)` on Dashboard.
+2. **AI Vision Extraction** ➔ Observe the 8-cell morphological matrix, 98% confidence circle, and Master DB keypoint matching.
+3. **Add to Smart Inventory** ➔ Click `Add to Smart Inventory`.
+4. **Prescription Verification** ➔ Navigate to `Rx-to-Pill Safety Engine`.
+5. **Simulate Mismatch** ➔ Click `Test Strength Mismatch (650mg vs 500mg)`.
+6. **Discrepancy Matrix** ➔ Observe the prominent Red Alert and Side-by-Side Comparison Table.
+7. **Duplicate Ingredient Check** ➔ Click `Test Dolo 650 + Cold Relief` to visualize Paracetamol duplication.
+8. **"Can I Take This Now?"** ➔ Click the button to get real-time timing & food clearance.
+9. **Generate Clinical Report** ➔ View report and transmit to Dr. Sharma.
+10. **Audio Chime & Multilingual** ➔ Click `🔔 ⚠️ Alarm Beep Alert: CITIZEN` to hear the dual-frequency synthesizer and switch languages between English, Tamil, and Hindi.
 
